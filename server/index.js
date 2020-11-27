@@ -22,7 +22,7 @@ const connect = mongoose.connect(config.mongoURI,
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 
-// app.use('/api/users', require('./routes/users'));
+app.use('/api/users', require('./routes/users'))
 // app.use('/api/team', require('./routes/team'));
 app.use('/uploads', express.static('uploads'));
 

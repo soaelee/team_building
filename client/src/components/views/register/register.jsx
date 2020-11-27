@@ -1,9 +1,12 @@
 import React, {useState, useRef} from 'react'
 import styles from '../login/login.module.css'
+import {useDispatch} from 'react-redux'
+import {registerUser} from '../../../_actions/user_actions'
 
-export const Register = () => {
+export const Register = (props) => {
 
     const formRef = useRef();
+    const dispatch = useDispatch();
 
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
@@ -21,12 +24,22 @@ export const Register = () => {
     }
     const submitHandler = (e) => {
         e.preventDefault()
-        if(!id || !pw){
-            return alert("아이디와 비밀번호를 입력해주세요.");
+        if(!id || !pw) return alert("아이디와 비밀번호를 입력해주세요.");
+        if(pw !== pwC) return alert("같은 비밀번호를 입력해주세요.");
+        
+        const dataToSubmit = {
+            name: id,
+            password: pw
         }
-        if(pw !== pwC){
-            return alert("같은 비밀번호를 입력해주세요.")
-        }
+        dispatch(registerUser(dataToSubmit))
+            .then(res => {
+                if(res.payload.success){
+                    props.history.push("/");
+                } else { 
+                    alert(res.payload.err);
+                }
+            })
+
         setId("")
         setPw("")
         setPwC("")

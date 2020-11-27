@@ -30,10 +30,6 @@ export const Header = ({animation}) => {
     const navClickHandler = (key) => {
         console.log(key);
     };
-
-    const hi = () => {
-        console.log("hi");
-    }
     return (
         <header 
             id="header" 
