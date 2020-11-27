@@ -1,25 +1,35 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
-import LoginPage from './components/views/loginPage/loginPage';
-import RegisterPage from './components/views/registerPage/registerPage'
-import {Switch, Route} from 'react-router-dom';
-import Header from './components/views/header/header'
-import LandingPage from './components/views/landingPage/landingPage';
-import UploadPage from './components/views/uploadPage/uploadPage';
-import List from './components/views/list/list'
-import DetailPage from './components/views/detailPage/detailPage';
+import {Switch, Route} from 'react-router-dom'
+import { Header } from './components/views/header/header'
+import Main from './components/views/main/main'
+import { Login } from './components/views/login/login'
+import { Register } from './components/views/register/register'
+
 function App() {
+
+  const [headerAnimation, setHeaderAnimation] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      const headerH = document.getElementById("header").clientHeight;
+      if(window.scrollY > headerH * 1.5){
+        setHeaderAnimation(true);
+      } else {
+        setHeaderAnimation(false);
+      }
+    })
+  })
+
   return (
     <div className="App">
-      <Header />
+      <Header animation={headerAnimation}/>
       <div className="contents">
-      <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/register" component={RegisterPage} />
-        <Route exact path="/upload" component={UploadPage} />
-        <Route exact path="/teams" component={List} />
-        <Route exact path="/team/:teamId" component={DetailPage} />
-      </Switch>
+        <Switch>
+          <Route exact path="/" component={Main} />
+          <Route exact path="/login" component={Login}/>
+          <Route exact path="/register" component={Register} />
+        </Switch>
       </div>
     </div>
   );

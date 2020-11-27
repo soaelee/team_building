@@ -1,0 +1,36 @@
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.form div label{
+    display: inline-block;
+    width: 100px;
+}
+
+.form div{
+    margin-bottom: 1em;
+}
+
+.input{
+    outline-color: #8f8d8d;
+    padding: .8em .9em;
+    border: 0;
+    border-bottom: 1px solid #8f8d8d;
+    color: #8f8d8d;
+}
+
+.button{
+    margin-top: 1.2em;
+    background: #2c70f8;
+    outline: 0;
+    border: 0;
+    padding: .8em 1.2em;
+    color: white;
+    font-weight: 600;
+    border-radius: 2px;
+    cursor: pointer;
+}

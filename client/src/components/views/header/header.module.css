@@ -1,0 +1,40 @@
+.header{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background:transparent;
+    transition: all .25s ease-in;
+    width: 100%;
+    max-width: 70%;
+}
+
+.header.color{
+    background: #fff;
+}
+
+.headerContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: auto;
+}
+
+.nav{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.nav li{
+    margin-right: 1.5em;
+    transform: translateX(3rem);
+}
+
+.button{
+    background: transparent;
+    border: 0;
+    outline: 0;
+    margin-right: 1em;
+    transform: translateX(1em)
+}
