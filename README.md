@@ -13,4 +13,4 @@ IT 프로젝트를 위해 필요한 팀원 모집글을 게시한다.
 ## Memo
 
 - 2020. 11. 26: 프로젝트 기획, 화면 설계서와 erd 작성
-- 2020. 11. 27: Header, Footer, Login, Register 컴포넌트 구현 (front & back) ~ing
+- 2020. 11. 27: Header, Login, Register 컴포넌트 구현, 회원가입 기능과 미들웨어 auth 구현
