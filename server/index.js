@@ -23,7 +23,7 @@ const connect = mongoose.connect(config.mongoURI,
   .catch(err => console.log(err));
 
 app.use('/api/users', require('./routes/users'))
-// app.use('/api/team', require('./routes/team'));
+app.use('/api/team', require('./routes/team'));
 app.use('/uploads', express.static('uploads'));
 
 // Serve static assets if in production

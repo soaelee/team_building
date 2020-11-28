@@ -1,0 +1,45 @@
+.uploadForm{
+    padding: 0 10em;
+    max-width: 80em;
+    margin: 5em auto 0;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.dropzoneContainer{
+    display: flex;
+}
+
+.dropzone {
+    height: 250px;
+    width: 250px;
+    border: 2px solid rgb(197, 197, 197);
+    font-size: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(133, 132, 132);
+    font-weight: 300;
+    border-radius: 4px;
+    margin-right: .1em;
+}
+
+.images{
+    border: 2px solid rgb(197, 197, 197);
+    height: 250px;
+    flex: 1;
+    display: flex;
+    overflow-x: scroll;
+    padding: .2em;
+}
+
+.images div img{
+    width: 250px;
+    min-width: 250px;
+    height: 100%;
+    margin-right: .2em;
+}
