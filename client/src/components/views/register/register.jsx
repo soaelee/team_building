@@ -2,6 +2,7 @@ import React, {useState, useRef} from 'react'
 import styles from '../login/login.module.css'
 import {useDispatch} from 'react-redux'
 import {registerUser} from '../../../_actions/user_actions'
+import Main from '../main/main'
 
 export const Register = (props) => {
 
@@ -46,30 +47,32 @@ export const Register = (props) => {
     }
 
     return (
-        <div  className={styles.formContainer} >
-            <form ref={formRef} onSubmit={submitHandler} className={styles.form}>
-                <div className={styles.id}>
-                    <label>
-                        아이디
-                    </label>
-                    <input className={styles.input} type="text" placeholder="Username" value={id} onChange={idChangeHandler}/> 
-                </div>
-                <div className={styles.pw}>
-                    <label>
-                    비밀번호
-                    </label>
-                    <input  className={styles.input} type="password" placeholder="Password"value={pw }onChange={pwChangeHandler}/>
-                </div>
-                <div className={styles.pw}>
-                    <label>
-                        비밀번호 확인
-                    </label>
-                    <input  className={styles.input} type="password" placeholder="Check Password" value={pwC} onChange={pwCChangeHandler}/>
-                </div>
+        <>
+            <Main />
+            <div  className={styles.formContainer} >
+                <form ref={formRef} onSubmit={submitHandler} className={styles.form}>
+                    <div className={styles.id}>
+                        <label>
+                            아이디
+                        </label>
+                        <input className={styles.input} type="text" placeholder="Username" value={id} onChange={idChangeHandler}/> 
+                    </div>
+                    <div className={styles.pw}>
+                        <label>
+                        비밀번호
+                        </label>
+                        <input  className={styles.input} type="password" placeholder="Password"value={pw }onChange={pwChangeHandler}/>
+                    </div>
+                    <div className={styles.pw}>
+                        <label>
+                            비밀번호 확인
+                        </label>
+                        <input  className={styles.input} type="password" placeholder="Check Password" value={pwC} onChange={pwCChangeHandler}/>
+                    </div>
 
-                <button  className={styles.button} >SIGN UP</button>
-        </form>
-        </div>
-
+                    <button  className={styles.button} >SIGN UP</button>
+            </form>
+            </div>
+        </>
   )
 }
