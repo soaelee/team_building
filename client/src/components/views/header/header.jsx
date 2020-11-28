@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react'
-import {Rightnav} from './rightnav.jsx'
+import Rightnav from './rightnav.jsx'
 import styles from './header.module.css'
 import logo from '../../../ui/tLogo.png'
 

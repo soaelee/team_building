@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Switch, Route} from 'react-router-dom'
+import Auth from './hoc/auth'
 import { Header } from './components/views/header/header'
 import Main from './components/views/main/main'
 import { Login } from './components/views/login/login'
@@ -26,9 +27,9 @@ function App() {
       <Header animation={headerAnimation}/>
       <div className="contents">
         <Switch>
-          <Route exact path="/" component={Main} />
-          <Route exact path="/login" component={Login}/>
-          <Route exact path="/register" component={Register} />
+          <Route exact path="/" component={Auth(Main, null)} />
+          <Route exact path="/login" component={Auth(Login, false)}/>
+          <Route exact path="/register" component={Auth(Register, false)} />
         </Switch>
       </div>
     </div>
