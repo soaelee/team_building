@@ -12,6 +12,7 @@
 
 .dropzoneContainer{
     display: flex;
+    margin-bottom: 1em;
 }
 
 .dropzone {
@@ -42,4 +43,15 @@
     min-width: 250px;
     height: 100%;
     margin-right: .2em;
+}
+
+.input {
+    padding: 1em;
+    margin: 1em 0;
+    outline: 0;
+}
+.input::placeholder {
+    font-weight: 300;
+    font-style: italic;
+    font-family: 'Noto Sans KR', sans-serif;
 }

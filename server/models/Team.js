@@ -22,6 +22,7 @@ const teamSchema = mongoose.Schema({
         default: []
     },
     depart: {
+        // 0: 기획과 마케팅 1: 디자인 2: 프론트엔드 3: 백엔드
         type: Array,
         default: []
     },

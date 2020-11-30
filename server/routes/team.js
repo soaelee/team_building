@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const {Team} = require('../models/Team');
+const { Team } = require('../models/Team');
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -19,7 +19,7 @@ router.post('/image', (req, res) => {
     //가져온 이미지를 저장을 해주면 된다.
     upload(req, res, err => {
         if (err) {
-            return req.json({ success: false, err })
+            return res.json({ success: false, err })
         }
         return res.json({ success: true, filePath: res.req.file.path, fileName: res.req.file.filename })
     })
@@ -31,6 +31,15 @@ router.post('/image', (req, res) => {
 
 router.post('/', (req, res) => {
 
+    // req.body = {
+    //     category: category,
+    //     name: name,
+    //     description: description,
+    //     images: Images,
+    //     depart: tmpArray,
+    //     contact: contact
+    // }
+    
     //받아온 정보들을 DB에 넣어 준다.
     const team = new Team(req.body)
 

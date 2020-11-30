@@ -7,12 +7,11 @@ import axios from 'axios'
 
 const Rightnav = (props) => {
     const user = useSelector(state => state.user)
-    console.log(user);
 
     const logoutHandler = () => {
         axios.get(`${USER_SERVER}/logout`)
             .then(res => {
-                if(res.status === 200) {
+                if (res.status === 200) {
                     props.history.push("/login");
                 } else {
                     alert("로그아웃에 실패했습니다.")
@@ -47,7 +46,7 @@ const Rightnav = (props) => {
                             Upload
                         </a>
                     </button>
-                    <button onClick={logoutHandler}className={styles.button}>
+                    <button onClick={logoutHandler} className={styles.button}>
                         로그아웃
                     </button>
                 </ul>
