@@ -2,7 +2,7 @@ import React, {useState, useRef} from 'react'
 import styles from './login.module.css'
 import {useDispatch} from 'react-redux'
 import {loginUser} from '../../../_actions/user_actions'
-import Main from '../main/main'
+import Identity from '../main/sections/identity'
 export const Login = (props) => {
 
     const formRef = useRef();
@@ -42,7 +42,7 @@ export const Login = (props) => {
 
     return (
         <>
-        <Main />
+        <Identity />
         <div  className={styles.formContainer} >
             <form ref={formRef} onSubmit={submitHandler} className={styles.form}>
                     <div className={styles.id}>

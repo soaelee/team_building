@@ -3,7 +3,7 @@ import Rightnav from './rightnav.jsx'
 import styles from './header.module.css'
 import logo from '../../../ui/tLogo.png'
 
-export const Header = ({animation}) => {
+export const Header = () => {
     const [nav, setNav] = useState([
         {
             key: 1,
@@ -20,13 +20,18 @@ export const Header = ({animation}) => {
     ]);
     const headerRef = useRef();
     const backgroundColor = styles.color;
-    useEffect(() => {
-        if(animation){
-            headerRef.current.classList.add(backgroundColor);
-        } else {
-            headerRef.current.classList.remove(backgroundColor);
-        }
-    }, [animation])
+
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      const headerH = document.getElementById("header").clientHeight;
+      if(window.scrollY > headerH){
+        headerRef.current.classList.add(backgroundColor);
+      } else {
+        headerRef.current.classList.remove(backgroundColor);
+      }
+    })
+  }, [])
     const navClickHandler = (key) => {
         console.log(key);
     };

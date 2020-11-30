@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import styles from './uploadForm.module.css'
 import axios from 'axios'
-import Main from '../main/main'
+import Identity from '../main/sections/identity'
 const UploadForm = (props) => {
 
     const [Images, setImages] = useState([]);
-    const [category, setCategory] = useState(0);
+    const [category, setCategory] = useState(1);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [departs, setDepart] = useState([
@@ -42,7 +42,7 @@ const UploadForm = (props) => {
     }
 
 
-    const radioHandler = (e) => setCategory(parseInt(e.currentTarget.value));
+    const radioHandler = (e) => {setCategory(parseInt(e.currentTarget.value)); };
     const nameChangeHandler = (e) => setName(e.currentTarget.value);
     const descChangeHandler = (e) => setDescription(e.currentTarget.value);
     const contactChangeHandler = (e) => setContact(e.currentTarget.value);
@@ -59,38 +59,39 @@ const UploadForm = (props) => {
     const submitHandle = (e) => {
         e.preventDefault();
         let tmpDepart = [];
-        for (let i = 0; i < departs.length; i++) {
-            if (departs[i].value) { tmpDepart.push(departs[i].key); }
-        }
+        console.log(category);
+        // for (let i = 0; i < departs.length; i++) {
+        //     if (departs[i].value) { tmpDepart.push(departs[i].key); }
+        // }
 
-        if (!name || !description || !tmpArray || !contact || Images.length === 0) {
-            return alert("모든 항목을 입력해주세요.");
-        }
+        // if (!name || !description || !tmpDepart || !contact || Images.length === 0) {
+        //     return alert("모든 항목을 입력해주세요.");
+        // }
 
-        const body = {
-            writer: props.user.userData._id,
-            category: category,
-            name: name,
-            description: description,
-            images: Images,
-            depart: tmpDepart,
-            contact: contact
-        }
+        // const body = {
+        //     writer: props.user.userData._id,
+        //     category: category,
+        //     title: name,
+        //     description: description,
+        //     images: Images,
+        //     depart: tmpDepart,
+        //     contact: contact
+        // }
 
-        axios.post('/api/team', body)
-            .then(res => {
-                if (res.data.success) {
-                    alert("글 작성을 완료했습니다.")
-                    props.history.push("/")
-                } else {
-                    alert("글 작성을 실패했습니다.")
-                }
-            })
+        // axios.post('/api/team', body)
+        //     .then(res => {
+        //         if (res.data.success) {
+        //             alert("글 작성을 완료했습니다.")
+        //             props.history.push("/")
+        //         } else {
+        //             alert("글 작성을 실패했습니다.")
+        //         }
+        //     })
     }
 
     return (
         <>
-            <Main />
+            <Identity />
             <div className={styles.uploadForm}>
                 <form className={styles.form} onSubmit={submitHandle}>
                     <div className={styles.dropzoneContainer}>
@@ -115,18 +116,17 @@ const UploadForm = (props) => {
                             <input
                                 name="category"
                                 type="radio"
-                                value="0"
+                                value="1"
                                 defaultChecked
                                 onChange={radioHandler}
                             />
-                        인재찾기
+                        인재지원
                     </label>
                         <label>
                             <input
-
                                 name="category"
                                 type="radio"
-                                value="1"
+                                value="0"
                                 onChange={radioHandler}
                             />
                         팀원모집
@@ -143,7 +143,7 @@ const UploadForm = (props) => {
                         ))}
                     </div>
                     <textarea value={contact} onChange={contactChangeHandler} className={styles.input} rows="10" placeholder="연락할 수 있는 경로를 모두 입력해주세요. 예시) 카카오톡 아이디: asdfs, 연락처: 010-xxxx-xxxx"></textarea>
-                    <button type="submit">작성하기</button>
+                    <button className={styles.button}type="submit">작성하기</button>
                 </form>
             </div>
         </>

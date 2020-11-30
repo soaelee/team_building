@@ -15,15 +15,11 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage }).single("file")
 
 router.post('/image', (req, res) => {
-
     //가져온 이미지를 저장을 해주면 된다.
     upload(req, res, err => {
-        if (err) {
-            return res.json({ success: false, err })
-        }
+        if (err) { return res.json({ success: false, err }) }
         return res.json({ success: true, filePath: res.req.file.path, fileName: res.req.file.filename })
     })
-
 })
 
 
@@ -55,20 +51,18 @@ router.post('/', (req, res) => {
 router.post('/teams', (req, res) => {
 
 
-    let order = req.body.order ? req.body.order : "desc";
-    let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
+    // let order = req.body.order ? req.body.order : "desc";
+    // let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
+
     // product collection에 들어 있는 모든 상품 정보를 가져오기 
     let limit = req.body.limit ? parseInt(req.body.limit) : 20;
     let skip = req.body.skip ? parseInt(req.body.skip) : 0;
-    let term = req.body.searchTerm
+    // let term = req.body.searchTerm
 
 
     let findArgs = {};
-
     for (let key in req.body.filters) {
-        if (req.body.filters[key].length > 0) {
-
-            console.log('key', key)
+        if (req.body.filters[key] >= 0) { //if (req.body.filters[key].length > 0) {
 
             if (key === "price") {
                 findArgs[key] = {
@@ -84,36 +78,32 @@ router.post('/teams', (req, res) => {
         }
     }
 
-
-    if (term) {
+    // if (term) {
+    //     Team.find(findArgs) 
+    //         .find({ $text: { $search: term } })
+    //         .populate("writer") //.sort([[sortBy, order]])
+    //         .skip(skip)
+    //         .limit(limit)
+    //         .exec((err, teamInfo) => {
+    //             if (err) return res.status(400).json({ success: false, err })
+    //             return res.status(200).json({
+    //                 success: true, teamInfo,
+    //                 postSize: teamInfo.length
+    //             })
+    //         })
+    // } else {
         Team.find(findArgs)
-            .find({ $text: { $search: term } })
-            .populate("writer")
-            .sort([[sortBy, order]])
+            .populate("writer") //.sort([[sortBy, order]])
+            .sort('-updateData')
             .skip(skip)
             .limit(limit)
             .exec((err, teamInfo) => {
                 if (err) return res.status(400).json({ success: false, err })
                 return res.status(200).json({
-                    success: true, teamInfo,
-                    postSize: teamInfo.length
+                    success: true, teamInfo //postSize: teamInfo.length
                 })
             })
-    } else {
-        Team.find(findArgs)
-            .populate("writer")
-            .sort([[sortBy, order]])
-            .skip(skip)
-            .limit(limit)
-            .exec((err, teamInfo) => {
-                if (err) return res.status(400).json({ success: false, err })
-                return res.status(200).json({
-                    success: true, teamInfo,
-                    postSize: teamInfo.length
-                })
-            })
-    }
-
+    // }
 })
 
 
