@@ -1,0 +1,11 @@
+.form {
+    display: flex;
+    justify-content: center;
+    border: 1px white;
+    margin-right: 2em;
+}
+
+.checkbox input{
+    margin: 0 1em;
+    margin-left: 1.5em;
+}

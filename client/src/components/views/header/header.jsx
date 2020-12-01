@@ -8,7 +8,7 @@ export const Header = () => {
         {
             key: 1,
             name: "인재찾기",
-            to: "/talent",
+            to: "/people",
             clicked: false
         },
         {

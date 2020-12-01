@@ -27,7 +27,7 @@ const Landing = ({cate}) => {
     return (
         <div className={styles.landing}>
             {posts && posts.map((post, idx) => (
-                <Card key={idx} teamInfo={post} />
+                <Card key={idx} teamInfo={post}/>
             ))}
         </div>
     )

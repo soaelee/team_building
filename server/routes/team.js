@@ -57,42 +57,62 @@ router.post('/teams', (req, res) => {
     // product collection에 들어 있는 모든 상품 정보를 가져오기 
     let limit = req.body.limit ? parseInt(req.body.limit) : 20;
     let skip = req.body.skip ? parseInt(req.body.skip) : 0;
-    // let term = req.body.searchTerm
+    let term = req.body.searchTerm
 
+    let findArgs = {category : req.body.filters["category"]};
+    let departArgs = []
+    if(req.body.filters["depart"]){ departArgs = req.body.filters["depart"] }
 
-    let findArgs = {};
-    for (let key in req.body.filters) {
-        if (req.body.filters[key] >= 0) { //if (req.body.filters[key].length > 0) {
-
-            if (key === "price") {
-                findArgs[key] = {
-                    //Greater than equal
-                    $gte: req.body.filters[key][0],
-                    //Less than equal
-                    $lte: req.body.filters[key][1]
-                }
-            } else {
-                findArgs[key] = req.body.filters[key];
-            }
-
+    //검색어가 있고
+    if (term) {
+        if(departArgs.length > 0) { //필터가 있을 경우
+            Team.find(findArgs)
+                .find({"title": {"$regex": term}})//.find({ $text: { $search: term } })
+                .find({depart: {$in: departArgs}})
+                .populate("writer") 
+                .sort('-updateData')
+                .skip(skip)
+                .limit(limit)
+                .exec((err, teamInfo) => {
+                    if (err) return res.status(400).json({ success: false, err })
+                    return res.status(200).json({
+                        success: true, teamInfo,
+                        postSize: teamInfo.length
+                    })
+                })
+        } 
+        else {Team.find(findArgs) //검색만 할 경우
+            .find({"title": {"$regex": term}})//.find({ $text: { $search: term } })
+            .populate("writer") //.sort([[sortBy, order]])
+            .skip(skip)
+            .limit(limit)
+            .exec((err, teamInfo) => {
+                if (err) return res.status(400).json({ success: false, err })
+                return res.status(200).json({
+                    success: true, teamInfo,
+                    postSize: teamInfo.length
+                })
+            })
         }
     }
-
-    // if (term) {
-    //     Team.find(findArgs) 
-    //         .find({ $text: { $search: term } })
-    //         .populate("writer") //.sort([[sortBy, order]])
-    //         .skip(skip)
-    //         .limit(limit)
-    //         .exec((err, teamInfo) => {
-    //             if (err) return res.status(400).json({ success: false, err })
-    //             return res.status(200).json({
-    //                 success: true, teamInfo,
-    //                 postSize: teamInfo.length
-    //             })
-    //         })
-    // } else {
-        Team.find(findArgs)
+    else {
+        if(departArgs.length > 0) { //필터가 있을 경우
+            Team.find(findArgs)
+                .find({depart: {$in: departArgs}})
+                .populate("writer") 
+                .sort('-updateData')
+                .skip(skip)
+                .limit(limit)
+                .exec((err, teamInfo) => {
+                    if (err) return res.status(400).json({ success: false, err })
+                    return res.status(200).json({
+                        success: true, teamInfo,
+                        postSize: teamInfo.length
+                    })
+            })
+        }
+        else {
+            Team.find(findArgs)
             .populate("writer") //.sort([[sortBy, order]])
             .sort('-updateData')
             .skip(skip)
@@ -100,11 +120,15 @@ router.post('/teams', (req, res) => {
             .exec((err, teamInfo) => {
                 if (err) return res.status(400).json({ success: false, err })
                 return res.status(200).json({
-                    success: true, teamInfo //postSize: teamInfo.length
+                    success: true, teamInfo,
+                    postSize: teamInfo.length
                 })
             })
-    // }
+        }
+    }
 })
+            
+
 
 
 //id=123123123,324234234,324234234  type=array
@@ -131,7 +155,6 @@ router.get('/teams_by_id', (req, res) => {
             if (err) return res.status(400).send(err)
             return res.status(200).send(team)
         })
-
 })
 
 

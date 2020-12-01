@@ -1,0 +1,21 @@
+.form{
+    border: 1px solid lightgrey;
+    display: flex;
+    background: white;
+}
+
+.form input,
+.form button{
+    border: 0;
+    outline: 0;
+    padding: 1em;
+}
+
+.form input{
+    background: transparent;
+}
+
+.form button{
+    font-size: .5rem;
+    letter-spacing: 2px;
+}

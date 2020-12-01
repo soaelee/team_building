@@ -45,11 +45,11 @@ const teamSchema = mongoose.Schema({
 
 teamSchema.index({
     title: 'text',
-    description: 'text'
+    // description: 'text'
 }, {
     weights: {
         title: 5,
-        description: 1
+        // description: 1
     }
 })
 

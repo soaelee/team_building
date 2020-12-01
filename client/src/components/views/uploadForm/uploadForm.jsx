@@ -60,33 +60,33 @@ const UploadForm = (props) => {
         e.preventDefault();
         let tmpDepart = [];
         console.log(category);
-        // for (let i = 0; i < departs.length; i++) {
-        //     if (departs[i].value) { tmpDepart.push(departs[i].key); }
-        // }
+        for (let i = 0; i < departs.length; i++) {
+            if (departs[i].value) { tmpDepart.push(departs[i].key); }
+        }
 
-        // if (!name || !description || !tmpDepart || !contact || Images.length === 0) {
-        //     return alert("모든 항목을 입력해주세요.");
-        // }
+        if (!name || !description || !tmpDepart || !contact || Images.length === 0) {
+            return alert("모든 항목을 입력해주세요.");
+        }
 
-        // const body = {
-        //     writer: props.user.userData._id,
-        //     category: category,
-        //     title: name,
-        //     description: description,
-        //     images: Images,
-        //     depart: tmpDepart,
-        //     contact: contact
-        // }
+        const body = {
+            writer: props.user.userData._id,
+            category: category,
+            title: name,
+            description: description,
+            images: Images,
+            depart: tmpDepart,
+            contact: contact
+        }
 
-        // axios.post('/api/team', body)
-        //     .then(res => {
-        //         if (res.data.success) {
-        //             alert("글 작성을 완료했습니다.")
-        //             props.history.push("/")
-        //         } else {
-        //             alert("글 작성을 실패했습니다.")
-        //         }
-        //     })
+        axios.post('/api/team', body)
+            .then(res => {
+                if (res.data.success) {
+                    alert("글 작성을 완료했습니다.")
+                    props.history.push("/")
+                } else {
+                    alert("글 작성을 실패했습니다.")
+                }
+            })
     }
 
     return (

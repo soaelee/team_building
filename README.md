@@ -15,4 +15,5 @@ IT 프로젝트를 위해 필요한 팀원 모집글을 게시한다.
 -     2020. 11. 26: 프로젝트 기획, 화면 설계서와 erd 작성
 -     2020. 11. 27: Header, Login, Register 컴포넌트 구현, 회원가입 기능과 미들웨어 auth 구현
 -     2020. 11. 28: 로그인(cookie에 저장), 로그아웃 기능과 Redux를 이용해서 hoc 구현, Main 컴포넌트 구현
--     2020. 11. 30: UpdateForm 컴포넌트와 글 작성 기능 구현 (배열 내장함수, spread operator),       메인화면에 데이터 read 구현(find filter), data 생성"
+-     2020. 11. 30: UpdateForm 컴포넌트와 글 작성 기능 구현 (배열 내장함수, spread operator, 메인화면에 데이터 read 구현(find filter), data 생성
+-     2020. 12. 01: Landing Page(teams, people) 컴포넌트와 불러오기 기능 구현(filter, search term 추가)
