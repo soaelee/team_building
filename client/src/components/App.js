@@ -10,6 +10,7 @@ import UploadForm from './views/uploadForm/uploadForm'
 import Landing from './views/main/sections/landing'
 import InfiniteTeam from './views/infiniteLanding/infinite_team';
 import InfinitePeople from './views/infiniteLanding/infinite_people';
+import Detail from './views/detail/detail';
 
 
 function App() {
@@ -26,7 +27,8 @@ function App() {
           <Route exact path="/register" component={Auth(Register, false)} />
           <Route exact path="/upload" component={Auth(UploadForm, true)} />
           <Route exact path="/team_building" component={Auth(InfiniteTeam, null)} />
-          <Route exact paht="/people" component={Auth(InfinitePeople, null)} />
+          <Route exact path="/people" component={Auth(InfinitePeople, null)} />
+          <Route exact path="/p/:postId" component={Auth(Detail, null)} />
         </Switch>
       </div>
     </div>

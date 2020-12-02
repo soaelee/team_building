@@ -8,12 +8,11 @@ const InfiniteTeam = () => {
     const [teams, setTeams] = useState([]);
     const [skip, setSkip] = useState(0);
     const [limit, setLimit] = useState(10);
-    const [pontSize, setPontSize] = useState(0);
-    const [filters, setFilters] = useState({
-        category: 0,
-    })
-    const [fetching, setFetching] = useState(false);
+    const [postSize, setPostSize] = useState(0);
+    const [filters, setFilters] = useState({ category: 0, })
+    const [fetching, setFetching] = useState(false); //true일때(통신중에는) 데이터 못 불러오게
     const [searchTerm, setSearchTerm] = useState("");
+
     useEffect(() => {
 
         let body = {
@@ -21,10 +20,12 @@ const InfiniteTeam = () => {
             limit: limit,
             filters: filters
         };
+
         getTeams(body)
     }, [])
 
     const getTeams = (body) => {
+        
         axios.post("/api/team/teams", body)
             .then( res => {
                 if(res.data.success) {
@@ -33,14 +34,17 @@ const InfiniteTeam = () => {
                     } else {
                         setTeams(res.data.teamInfo)
                     }
-                    setPontSize(res.data.pontSize);
+                    setPostSize(res.data.postSize);
                 } else {
                     alert("팀원 모집글을 가져오는데 실패 했습니다.")
                 }
             })
     }
 
-    const fetchMoreData = async () => {
+    //loadMore이라는 조건을 통해서
+    //더 불러온 정보일 경우, setTeams를 대체하는게 아니라
+    //더해지게 되는 것!
+    const fetchMoreData = () => {
         setFetching(true);
         let tmpSkip = skip + limit
         let body = {

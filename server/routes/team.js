@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
 
     // req.body = {
     //     category: category,
-    //     name: name,
+    //     title: name,
     //     description: description,
     //     images: Images,
     //     depart: tmpArray,
@@ -51,11 +51,8 @@ router.post('/', (req, res) => {
 router.post('/teams', (req, res) => {
 
 
-    // let order = req.body.order ? req.body.order : "desc";
-    // let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
-
     // product collection에 들어 있는 모든 상품 정보를 가져오기 
-    let limit = req.body.limit ? parseInt(req.body.limit) : 20;
+    let limit = req.body.limit ? parseInt(req.body.limit) : 10;
     let skip = req.body.skip ? parseInt(req.body.skip) : 0;
     let term = req.body.searchTerm
 
@@ -82,8 +79,8 @@ router.post('/teams', (req, res) => {
                 })
         } 
         else {Team.find(findArgs) //검색만 할 경우
-            .find({"title": {"$regex": term}})//.find({ $text: { $search: term } })
-            .populate("writer") //.sort([[sortBy, order]])
+            .find({"title": {"$regex": term}})
+            .populate("writer") 
             .skip(skip)
             .limit(limit)
             .exec((err, teamInfo) => {
@@ -113,7 +110,7 @@ router.post('/teams', (req, res) => {
         }
         else {
             Team.find(findArgs)
-            .populate("writer") //.sort([[sortBy, order]])
+            .populate("writer") 
             .sort('-updateData')
             .skip(skip)
             .limit(limit)
@@ -129,34 +126,41 @@ router.post('/teams', (req, res) => {
 })
             
 
-
-
+///api/team/post_by_id?id=${postId}&type=single
 //id=123123123,324234234,324234234  type=array
-router.get('/teams_by_id', (req, res) => {
+router.get('/post_by_id', (req, res) => {
 
     let type = req.query.type
-    let productIds = req.query.id
+    let postIds = req.query.id
 
     if (type === "array") {
         //id=123123123,324234234,324234234 이거를 
         //productIds = ['123123123', '324234234', '324234234'] 이런식으로 바꿔주기
         let ids = req.query.id.split(',')
-        teamIds = ids.map(item => {
+        postIds = ids.map(item => {
             return item
         })
 
     }
 
-    //productId를 이용해서 DB에서  productId와 같은 상품의 정보를 가져온다.
-
-    Team.find({ _id: { $in: teamIds } })
+    //postId를 이용해서 DB에서 같은 ID의 정보를 가져온다.
+    Team.find({ _id: { $in: postIds } })
         .populate('writer')
         .exec((err, team) => {
             if (err) return res.status(400).send(err)
             return res.status(200).send(team)
         })
 })
-
+///api/team/removePost?id=${postId}
+router.get('/removePost', (req, res) => {
+    let postId = req.query.id
+    console.log(postId);
+    Team.deleteOne({ _id: postId})
+        .exec((err, result) => {
+            if(err) return res.status(400).send(err)
+            return res.status(200).json({success: true})
+        })
+})
 
 
 

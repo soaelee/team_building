@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react'
-import {auth} from '../_actions/user_actions'
-import {useSelector, useDispatch} from 'react-redux'
+import React, {useEffect} from 'react';
+import {auth} from '../_actions/user_actions';
+import {useSelector, useDispatch} from 'react-redux';
 
 export default function (SpacificComponent, option) {
     
@@ -13,12 +13,12 @@ export default function (SpacificComponent, option) {
                 .then(res => {
                     if(!res.payload.isAuth) {
                         if(option) { 
-                            props.history.push("/login")
+                            props.history.push("/login");
                         }
                     }
                     else {
                         if(option === false) {
-                            props.history.push("/")
+                            props.history.push("/");
                         }
                     }
                 })
