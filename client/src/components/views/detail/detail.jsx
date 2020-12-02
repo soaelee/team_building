@@ -6,6 +6,7 @@ import DetailInfo from './sections/detailInfo';
 import styles from './detail.module.css';
 import {useSelector} from 'react-redux';
 import DetailUDButton from './sections/detailUDButton'
+
 const Detail = ({match, history}) => {
     const postId = match.params.postId;
     const [post, setPost] = useState({});
@@ -27,7 +28,7 @@ const Detail = ({match, history}) => {
         }
     }, [user])
     const updateClickHandler = () => {
-        console.log("update")
+        history.push(`/update/${postId}`)
     }
 
     const deleteClickHandler = () => {

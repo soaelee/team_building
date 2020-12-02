@@ -17,9 +17,8 @@ IT 프로젝트를 위해 필요한 팀원 모집글을 게시한다.
 -     2020. 11. 28: 로그인(cookie에 저장), 로그아웃 기능과 Redux를 이용해서 hoc 구현, Main 컴포넌트 구현
 -     2020. 11. 30: UpdateForm 컴포넌트와 글 작성 기능 구현 (배열 내장함수, spread operator, 메인화면에 데이터 read 구현(find filter), data 생성
 -     2020. 12. 01: Landing Page(teams, people) 컴포넌트와 불러오기 기능 구현(filter, search term 추가)
--     2020. 12. 02: 글 상세보기(Detail) 컴포넌트와 포스트 정보 불러오기 기능 구현, Delete 구현(user state이용)
+-     2020. 12. 02: 글 상세보기(Detail) 컴포넌트와 포스트 정보 불러오기 기능 구현, Delete & Update 구현(user state이용)
 
 ## 남은 기능
-* 업데이트 기능
 * 좋아요와 조회수 구현
 * 마이페이지 - 내가 쓴글과 좋아요 누른 글

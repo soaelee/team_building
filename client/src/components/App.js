@@ -11,7 +11,8 @@ import Landing from './views/main/sections/landing'
 import InfiniteTeam from './views/infiniteLanding/infinite_team';
 import InfinitePeople from './views/infiniteLanding/infinite_people';
 import Detail from './views/detail/detail';
-
+import Footer from './views/footer/footer';
+import Update from './views/update/update';
 
 function App() {
 
@@ -29,8 +30,10 @@ function App() {
           <Route exact path="/team_building" component={Auth(InfiniteTeam, null)} />
           <Route exact path="/people" component={Auth(InfinitePeople, null)} />
           <Route exact path="/p/:postId" component={Auth(Detail, null)} />
+          <Route exact path="/update/:postId" component={Auth(Update, true)} />
         </Switch>
       </div>
+      <Footer/>
     </div>
     </Suspense>
   );

@@ -22,9 +22,6 @@ router.post('/image', (req, res) => {
     })
 })
 
-
-
-
 router.post('/', (req, res) => {
 
     // req.body = {
@@ -46,10 +43,7 @@ router.post('/', (req, res) => {
 
 })
 
-
-
 router.post('/teams', (req, res) => {
-
 
     // product collection에 들어 있는 모든 상품 정보를 가져오기 
     let limit = req.body.limit ? parseInt(req.body.limit) : 10;
@@ -124,7 +118,6 @@ router.post('/teams', (req, res) => {
         }
     }
 })
-            
 
 ///api/team/post_by_id?id=${postId}&type=single
 //id=123123123,324234234,324234234  type=array
@@ -151,6 +144,7 @@ router.get('/post_by_id', (req, res) => {
             return res.status(200).send(team)
         })
 })
+
 ///api/team/removePost?id=${postId}
 router.get('/removePost', (req, res) => {
     let postId = req.query.id
@@ -162,7 +156,23 @@ router.get('/removePost', (req, res) => {
         })
 })
 
+router.post('/update', (req, res) => {
 
+    const id = req.body.postId;
+    const category= req.body.category;
+    const title = req.body.title;
+    const description = req.body.description;
+    const images = req.body.images;
+    const depart = req.body.depart;
+    const contact = req.body.contact;
+
+    Team.findOneAndUpdate({_id: id}, 
+        {$set: { "title": title, "category": category, "description": description, "images": images, "depart": depart, "contact": contact  }}, null, (err, result) => {
+            if(err) return res.status(400).send(err)
+            return res.status(200).json({success: true})
+        }
+        )
+})
 
 
 

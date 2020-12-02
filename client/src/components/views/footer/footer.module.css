@@ -1,0 +1,26 @@
+.footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.line{
+    width: 80%;
+    height: 1px;
+    border-bottom: 1px solid lightgray;
+}
+
+.footer ul{
+    display: flex;
+    width: 80%;
+    justify-content: space-around;
+    color: gray;
+    padding: 2em 18em;
+}
+
+.footer ul li a{
+    color: rgb(54, 116, 230);
+    cursor: pointer;
+}
