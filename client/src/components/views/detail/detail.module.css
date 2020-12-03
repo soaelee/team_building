@@ -30,18 +30,6 @@
     justify-content: center;
 }
 
-.likeInfo{
-    margin: 1em 0;
-}
-
-.likeInfo h4{
-    margin: .5em 0;
-    background: white;
-    width: 120px;
-    padding: .2em;
-    border-radius: 8px;
-}
-
 .likeButton {
     background: #216ef9;
     border: 0;
@@ -56,6 +44,7 @@
 .buttonContainer{
     display: flex;
     justify-content: flex-end;
+    margin-bottom: .5em
 }
 
 .UDButton{
@@ -86,6 +75,11 @@
     margin: .2em 0 .8em;
     font-size: 2.5rem;
     display: block;
+    margin: .5em 0;
+    background: white;
+    padding: .2em.4em;
+    border-radius: 8px;
+
 }
 
 .detailInfo table tr:first-child {

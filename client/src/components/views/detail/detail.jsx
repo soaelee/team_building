@@ -53,10 +53,9 @@ const Detail = ({match, history}) => {
                 <DetailUDButton text="delete" onClick={deleteClickHandler}/>
                 </div>
             )}
-            <h1 className={styles.title}>{post.title}</h1>
             <div className={styles.top}>
                 <DetailImg image={post.images}/>
-                <DetailLike />
+                <DetailLike title={post.title}/>
             </div>
             <div className={styles.bottom}>
                 <DetailInfo postInfo={post}/>

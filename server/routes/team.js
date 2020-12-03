@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const { Team } = require('../models/Team');
+// const cookieParser = require("cookie-parser");
+const {auth} = require('../middleware/auth')
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -13,6 +15,8 @@ var storage = multer.diskStorage({
 })
 
 var upload = multer({ storage: storage }).single("file")
+
+// router.use(cookieParser());
 
 router.post('/image', (req, res) => {
     //가져온 이미지를 저장을 해주면 된다.
@@ -121,11 +125,13 @@ router.post('/teams', (req, res) => {
 
 ///api/team/post_by_id?id=${postId}&type=single
 //id=123123123,324234234,324234234  type=array
-router.get('/post_by_id', (req, res) => {
+router.get('/post_by_id', auth, (req, res) => {
 
     let type = req.query.type
     let postIds = req.query.id
 
+    console.log(req.cookies);
+    
     if (type === "array") {
         //id=123123123,324234234,324234234 이거를 
         //productIds = ['123123123', '324234234', '324234234'] 이런식으로 바꿔주기
@@ -133,16 +139,17 @@ router.get('/post_by_id', (req, res) => {
         postIds = ids.map(item => {
             return item
         })
-
     }
 
+   
     //postId를 이용해서 DB에서 같은 ID의 정보를 가져온다.
     Team.find({ _id: { $in: postIds } })
-        .populate('writer')
-        .exec((err, team) => {
-            if (err) return res.status(400).send(err)
-            return res.status(200).send(team)
-        })
+    .populate('writer')
+    .exec((err, team) => {
+        if (err) return res.status(400).send(err)
+        return res.status(200).send(team)
+    })
+
 })
 
 ///api/team/removePost?id=${postId}
@@ -173,7 +180,5 @@ router.post('/update', (req, res) => {
         }
         )
 })
-
-
 
 module.exports = router;

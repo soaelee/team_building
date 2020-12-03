@@ -75,7 +75,7 @@ const Update = (props) => {
             if (departs[i].value) { tmpDepart.push(departs[i].key); }
         }
 
-        if (!name || !description || !tmpDepart || !contact || Images.length === 0) {
+        if (!name || !description || !(tmpDepart.length > 0) || !contact || Images.length === 0) {
             return alert("모든 항목을 입력해주세요.");
         }
 

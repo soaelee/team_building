@@ -61,5 +61,42 @@ router.get("/logout", auth, (req, res) => {
     });
 });
 
+router.post('/addLike', auth, (req, res) => {
+    const user = req.user._id;
+    const postId = req.body.postId;
 
+    User.findOne({ _id : user},
+        (err, userInfo) => {
+            //좋아요가 like에 이미 있는지 확인하기!
+            let duplicate = false;
+            userInfo.like.forEach( item => {
+                if (item.id === postId){
+                    duplicate = true;
+                }
+            })
+
+            //이미 like에 있다면 삭제
+            if (duplicate){
+                User.findOneAndUpdate(
+                    {_id: user},
+                    {"$pull":{"like": {"id": postId}}},
+                    { new: true},
+                    (err, userInfo) => {
+                        if(err) return res.status(400).json({success: false, err})
+                        return res.status(200).json({success: true, duplicate: true})
+                    }
+                )
+            } else { //like에 없다면 더해주자!
+                User.findOneAndUpdate(
+                    {_id: user},
+                    {$push: { like: { id: postId, date: Date.now()}}},
+                    { new: true},
+                    (err, userInfo) => {
+                        if(err) return res.status(400).json({success: false, err})
+                        return res.status(200).json({success: true, deplicate: false})
+                    }
+                )
+            }
+        })
+})
 module.exports = router;
