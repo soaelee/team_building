@@ -13,6 +13,7 @@ import InfinitePeople from './views/infiniteLanding/infinite_people';
 import Detail from './views/detail/detail';
 import Footer from './views/footer/footer';
 import Update from './views/update/update';
+import MyPage from './views/mypage/mypage';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
           <Route exact path="/people" component={Auth(InfinitePeople, null)} />
           <Route exact path="/p/:postId" component={Auth(Detail, null)} />
           <Route exact path="/update/:postId" component={Auth(Update, true)} />
+          <Route exact path="/mypage" component={Auth(MyPage, null)} />
         </Switch>
       </div>
       <Footer/>

@@ -1,0 +1,42 @@
+.mypage{
+    display: flex;
+    align-items: flex-start;
+    padding: 5em 33em;
+    flex-direction: column;
+    height: 100%;
+}
+
+.mypage .nav .ul{
+    margin: 0;
+    padding: 0 0 2em 0;
+    display: flex;
+    align-items: center;
+}
+
+.mypage .nav .ul li{
+    color: #807f7f;
+    margin-bottom: .5em;
+    cursor: pointer;
+}
+
+.ul li:first-child:after{
+    content: "";
+    display: inline-block;
+    height: 10px;
+    width: 1px;
+    background: black;
+    margin: 0 .5em;
+}
+.mypage .nav .ul li.active{
+    font-weight: 700;
+    color: #292929;
+    border-radius: 8px;
+}
+
+.mypageInfo{
+    width: 100%;
+    border-radius: 8px;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+}

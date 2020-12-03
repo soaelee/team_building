@@ -1,0 +1,59 @@
+.container{
+    width: 100%;
+}
+
+.board{
+    width: 100%;
+    max-width: 1000px;;
+    margin: auto;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+
+td{
+    border-bottom: 1px solid rgb(224, 224, 224);
+    border-top: 1px solid rgb(224, 224, 224);
+    padding: .7em .7em;
+    background: #fff;
+}
+
+.board thead td{
+    background: #ebebeb;
+    font-weight: 500;
+}
+
+.title{
+    padding: .5em .10em;
+}
+
+.pageUl{
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+    padding-bottom: 0;
+}
+.pageLi{
+    width: 2em;
+    text-align: center;
+    height: 2em;
+    margin: 0 .3em;
+    color: grey;
+    cursor: pointer;
+}
+.pageLi.active{
+    font-weight: 500;
+    border-bottom: 2px solid #fff;
+}
+
+.button{
+    background: #2c70f8;
+    outline: 0;
+    border: 0;
+    color: white;
+    border-radius: 8px;
+    font-size: .75rem;
+    padding: .5em .8em;
+    font-weight: 700;
+    cursor: pointer;
+}

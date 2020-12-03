@@ -1,3 +1,7 @@
+.main{
+    padding-bottom: 3em;
+}
+
 .Identity{
     background: url("../../../ui/home.jpg") no-repeat center/cover;
 }

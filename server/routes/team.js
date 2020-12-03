@@ -123,6 +123,53 @@ router.post('/teams', (req, res) => {
     }
 })
 
+router.post('/mylist', auth, (req, res) => {
+    const findArgs = {writer: req.user._id};
+    let limit = req.body.limit ? parseInt(req.body.limit) : 10;
+    let skip = req.body.skip ? parseInt(req.body.skip) : 0;
+    let isLike = req.body.isLike ? true : false;
+    console.log(isLike);
+    if(isLike){
+        let like = req.user.like.map(item => {
+            return item.id
+        });
+        console.log(like);
+
+            //postId를 이용해서 DB에서 같은 ID의 정보를 가져온다.
+        Team.find({ _id: { $in: like } })
+        .populate('writer')
+        .exec((err, listInfo) => {
+            if(err) return res.status(400).json({success: false, err})
+            return res.status(200).json({
+                success: true, listInfo
+            })
+        })
+
+    } else {
+        Team.find(findArgs)
+        .populate("writer")
+        .skip(skip)
+        .limit(limit)
+        .sort('-updateData')
+        .exec((err, listInfo) => {
+            if(err) return res.status(400).json({success: false, err})
+            return res.status(200).json({
+                success: true, listInfo
+            })
+        })
+    }
+})
+
+router.get('/pagination', auth, (req, res) => {
+    const findArgs = {writer: req.user._id};
+
+    Team.find(findArgs)
+        .populate("writer")
+        .exec((err, listInfo) => {
+        if(err) return res.status(400).send(err)
+        return res.status(200).send(listInfo)
+    })
+})
 ///api/team/post_by_id?id=${postId}&type=single
 //id=123123123,324234234,324234234  type=array
 router.get('/post_by_id', auth, (req, res) => {
@@ -140,7 +187,6 @@ router.get('/post_by_id', auth, (req, res) => {
             return item
         })
     }
-
    
     //postId를 이용해서 DB에서 같은 ID의 정보를 가져온다.
     Team.find({ _id: { $in: postIds } })

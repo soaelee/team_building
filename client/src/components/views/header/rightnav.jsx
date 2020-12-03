@@ -49,6 +49,11 @@ const Rightnav = (props) => {
                     <button onClick={logoutHandler} className={styles.button}>
                         로그아웃
                     </button>
+                    <button className={styles.button}>
+                        <a href="/mypage">
+                            마이페이지
+                        </a>
+                    </button>
                 </ul>
             </>
         )

@@ -3,8 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
-    background: #f7f5f5;
+    height: 100vh;
 }
 
 .contents{
@@ -12,6 +11,6 @@
     margin: 0 auto;
     text-align: center;
     height: auto;
-    padding-bottom: 3em;
+    flex: 1;
 }
 
