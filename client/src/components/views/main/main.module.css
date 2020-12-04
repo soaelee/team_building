@@ -61,3 +61,49 @@
 .button a{
     color: white;
 }
+
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media screen and (max-width:1023px) {
+    .identityContainer{
+        text-align: center;
+        padding: 5em 15em;
+    }
+
+    .identityContainer h2{
+        font-size: 2.3rem;
+    }
+
+    .identityContainer h3{
+        font-size: 1.5rem;
+    }
+
+    .title{
+        padding: 0 1em;
+    }
+}
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
+@media screen and (max-width:767px) {
+    .identityContainer{
+        text-align: center;
+        padding: 5em 5em;
+    }
+
+    .identityContainer h2{
+        font-size: 1.5rem;
+    }
+
+    .identityContainer h3{
+        font-size: 1.1rem;
+    }
+
+    .title{
+        padding: 0 1em;
+        font-size: 1rem;
+    }
+
+    .landing{
+        flex-direction: column;
+    }
+}

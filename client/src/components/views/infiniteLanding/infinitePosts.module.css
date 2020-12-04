@@ -18,3 +18,23 @@
     width: 100%;
     margin-bottom: 3em;
 }
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media screen and (max-width:1020px) {
+
+    .title{
+        margin-left: 6em;
+    }
+}
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
+@media screen and (max-width:767px) {
+    .title{
+        margin-left: 2em;
+        font-size: 1rem;
+    }
+    .filters{
+        flex-direction: column;
+        margin: em 0;
+    }
+}

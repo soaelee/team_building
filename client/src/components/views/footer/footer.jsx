@@ -8,9 +8,9 @@ const Footer = () => {
                 <li>@2020</li>
                 <li><a href="https://github.com/soaelee/team_building" target="blank">github</a></li>
                 <li>soaelee</li>
-                <li>front end</li>
-                <li>engineering</li>
-                <li>toy project</li>
+                <li className={styles.hidden}>front end</li>
+                <li className={styles.hidden}>engineering</li>
+                <li className={styles.hidden}>toy project</li>
                 <li>team building</li>
             </ul>
         </footer>

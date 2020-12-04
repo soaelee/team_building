@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const { Team } = require('../models/Team');
-// const cookieParser = require("cookie-parser");
 const {auth} = require('../middleware/auth')
 
 var storage = multer.diskStorage({
@@ -128,12 +127,10 @@ router.post('/mylist', auth, (req, res) => {
     let limit = req.body.limit ? parseInt(req.body.limit) : 10;
     let skip = req.body.skip ? parseInt(req.body.skip) : 0;
     let isLike = req.body.isLike ? true : false;
-    console.log(isLike);
     if(isLike){
         let like = req.user.like.map(item => {
             return item.id
         });
-        console.log(like);
 
             //postId를 이용해서 DB에서 같은 ID의 정보를 가져온다.
         Team.find({ _id: { $in: like } })
@@ -170,14 +167,13 @@ router.get('/pagination', auth, (req, res) => {
         return res.status(200).send(listInfo)
     })
 })
+
 ///api/team/post_by_id?id=${postId}&type=single
 //id=123123123,324234234,324234234  type=array
-router.get('/post_by_id', auth, (req, res) => {
+router.get('/post_by_id', (req, res) => {
 
     let type = req.query.type
     let postIds = req.query.id
-
-    console.log(req.cookies);
     
     if (type === "array") {
         //id=123123123,324234234,324234234 이거를 

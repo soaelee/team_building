@@ -16,6 +16,7 @@
 .imageContainer img{
     width: 70%;
     height: 360px;
+    min-width: 300px;
     border: 8px solid rgba(255, 255, 255, 0.329);
     border-radius: 8px;
     box-shadow: 1px 1px 2px 0px rgba(97,97,97,1);
@@ -124,4 +125,75 @@
 
 .departItem div.green{
     border-color: green;
+}
+
+
+@media screen and (max-width:1300px) {
+    .detail{
+        padding: 3em 15em;
+    }
+}
+
+@media screen and (max-width:900px) {
+    .detail{
+        padding: 3em 8em;
+    }
+    .top{
+        flex-direction: column;
+    }
+
+    .likeContainer{
+        text-align: center;
+        margin: auto;
+        padding-left: 0;
+        align-items: center;
+    }
+
+    .imageContainer img{
+        width: 70%;
+        height: 250px;
+        min-width: 250px;
+        border: 2px solid rgba(255, 255, 255, 0.329);
+    }
+
+    .title{
+        margin: .2em 0;
+        font-size: 1.5rem;
+        margin: .5em 0;
+        background: transparent;
+        padding: .2em.4em;
+    }
+
+    .likeButton {
+        color: white;
+        padding: .8em;
+        width: 80px;
+        font-size: .7rem;
+    }
+
+    .tableDepart{    
+        font-weight: 500;
+        font-size: .8rem;
+    }
+
+    .tableDetail{
+        font-size: .8rem;
+    }
+    .description{
+        color: #216ef9;
+        font-weight: 300;
+        font-size: .7rem;
+    }
+}
+
+@media screen and (max-width:720px) {
+    .detail{
+        padding: 3em 2em;
+    }
+    .imageContainer img{
+        width: 70%;
+        height: 180px;
+        min-width: 250px;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+    }
 }

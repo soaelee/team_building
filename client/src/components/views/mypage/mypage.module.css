@@ -1,7 +1,7 @@
 .mypage{
     display: flex;
     align-items: flex-start;
-    padding: 5em 33em;
+    padding: 5em 20em;
     flex-direction: column;
     height: 100%;
 }
@@ -39,4 +39,25 @@
     text-align: left;
     display: flex;
     justify-content: center;
+}
+@media screen and (max-width:1500px) {
+    .mypage{
+        padding: 5em 10em;
+    }
+}
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media screen and (max-width:1023px) {
+    .mypage{
+        padding: 5em 10em;
+    }
+}
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
+@media screen and (max-width:800px) {
+    .mypage{
+        padding: 2em 2em 0;
+    }
+    .mypage .nav .ul li{
+        font-size: .8rem;
+    }
 }

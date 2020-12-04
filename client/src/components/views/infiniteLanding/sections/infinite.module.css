@@ -4,3 +4,13 @@
     justify-content: center;
     padding: 0 8em;
 }
+
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
+@media screen and (max-width:767px) {
+    .infinite{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

@@ -12,7 +12,7 @@ const Mylist = ({userId, params}) => {
     const [limit, setLimit] = useState(10);
     useEffect(() => {
         console.log(userId);
-        if(params == "mylist"){
+        if(params === "mylist"){
             const body = {
                 skip: skip,
                 limit: limit
@@ -51,17 +51,35 @@ const Mylist = ({userId, params}) => {
     }
 
     const deleteClickHandler = (postId) => {
-        const res = window.confirm("해당 포스트를 삭제하시겠습니까?");
-        if(res){
-            console.log(postId);
-            axios.get(`/api/team/removePost?id=${postId}`)
-                .then(res => {
-                    alert("삭제되었습니다.");
-                    getListData();
+
+        if(params === "mylist"){
+            const res = window.confirm("해당 포스트를 삭제하시겠습니까?");
+            if(res){
+                console.log(postId);
+                axios.get(`/api/team/removePost?id=${postId}`)
+                    .then(res => {
+                        alert("삭제되었습니다.");
+                        getListData();
+                    })
+                    .catch(err => {
+                        alert(err);
                 })
-                .catch(err => {
-                    alert(err);
-                })
+            }
+        } else {
+            const res = window.confirm("해당 포스트의 좋아요를 취소하시겠습니까?");
+            if(res){
+                const body = {
+                    postId: postId
+                }
+                axios.post('/api/users/addLike', (body))
+                    .then(res => {
+                        alert("좋아요를 취소했습니다.");
+                        getListData();
+                    })
+                    .catch(err => {
+                        alert(err);
+                    })
+            }
         }
     }
     return (

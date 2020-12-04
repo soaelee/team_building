@@ -19,3 +19,11 @@
     font-size: .5rem;
     letter-spacing: 2px;
 }
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
+@media screen and (max-width:767px) {
+    .form input,
+    .form button{
+    padding: .8em;
+    }
+}

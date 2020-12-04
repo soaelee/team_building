@@ -13,13 +13,15 @@ const Detail = ({match, history}) => {
     const [resUser, setResUser] = useState("");
     const [stateUser, setStateUser] = useState("");
     let user = useSelector( state => state.user);
+
     useEffect(() => {
         axios.get(`/api/team/post_by_id?id=${postId}&type=single`)
             .then(res => {
                 setPost(res.data[0]);  
-                setResUser(res.data[0].writer._id);          
+                setResUser(res.data[0].writer._id); 
+                console.log(res.data);         
             })
-            .catch(err => console.log(err))
+            .catch(err => alert(err))
     }, [])
 
     useEffect(() => {
@@ -27,6 +29,7 @@ const Detail = ({match, history}) => {
             setStateUser(user.userData._id);
         }
     }, [user])
+
     const updateClickHandler = () => {
         history.push(`/update/${postId}`)
     }

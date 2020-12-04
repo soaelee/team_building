@@ -32,8 +32,8 @@ export const Header = () => {
       }
     })
   }, [])
-    const navClickHandler = (key) => {
-        console.log(key);
+    const navClickHandler = () => {
+        headerRef.current.classList.toggle(styles.active);
     };
     return (
         <header 
@@ -46,18 +46,22 @@ export const Header = () => {
                         <img src={logo} alt=""/>
                     </a>
                 </div>
-                <div className={styles.nav}>
-                    {nav.map(item=>(
-                        <li key={item.key} onClick={() => navClickHandler(item.key)}>
-                            <a href={item.to}>
-                                {item.name}
-                            </a>
-                        </li>
-                    ))}
+                <div className={styles.navContainer}>
+                    <div className={styles.nav}>
+                        {nav.map(item=>(
+                            <li key={item.key} onClick={() => navClickHandler(item.key)}>
+                                <a href={item.to}>
+                                    {item.name}
+                                </a>
+                            </li>
+                        ))}
+                    </div>
+                    <Rightnav />
                 </div>
-                <Rightnav />
                 {/* auth 체크를 해서 sign-in인지 logout인지 결정 */}
             </div>
+            
+            <i className={`fas fa-ellipsis-v ${styles.toggle}`} onClick={navClickHandler}></i>
         </header>
     )
 }

@@ -1,5 +1,5 @@
 .card{
-    width: 400px;
+    width: 380px;
     height: 350px;
     border: 1px solid lightgrey;
     margin: 1em 1em;
@@ -62,4 +62,76 @@
 
 .departItem div.green{
     border-color: green;
+}
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media screen and (max-width:1023px) {
+
+    .card{
+        width: 350px;
+        height: 300px;
+    }
+    
+    .image{
+        width: 100%;
+        height: 90px;
+        overflow: hidden;
+    }
+
+    .description{
+        padding: 1em;
+        height: 108px;
+    }
+    
+    .description h3{
+        height: 15px;
+        font-size: .95rem;
+    }
+    
+    .description .detail{
+        height: 94px;
+        font-size: .8rem;
+    }
+
+    .departItem{
+        font-size: .75rem;
+        display: flex;
+        width: 80px;
+    }
+}
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
+@media screen and (max-width:767px) {
+    .card{
+        width: 250px;
+        height: 250px;
+    }
+    
+    .image{
+        width: 100%;
+        height: 60px;
+        overflow: hidden;
+    }
+
+    .description{
+        padding: .5em;
+        height: 188px;
+    }
+    
+    .description h3{
+        height: 10px;
+        font-size: .85rem;
+    }
+
+    .departItem{
+        font-size: .75rem;
+        display: flex;
+        width: 80px;
+    }
+
+    .description .detail{
+        height: 98px;
+        font-size: .8rem;
+    }
+
 }
